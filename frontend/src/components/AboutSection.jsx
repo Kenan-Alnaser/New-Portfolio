@@ -231,7 +231,7 @@ const AboutSection = () => {
                   Tech Stack
                 </h4>
                 <div className="flex flex-wrap gap-2">
-                  {mockPersonalInfo.tools.map((tool, index) => {
+                  {profileData.tools.map((tool, index) => {
                     const IconComponent = getToolIcon(tool);
                     return (
                       <Badge

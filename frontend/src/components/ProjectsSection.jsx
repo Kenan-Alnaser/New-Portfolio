@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
-import { ExternalLink, Star, GitFork, Calendar, Code2, Zap } from 'lucide-react';
-import { mockGitHubProjects } from '../mock';
+import { ExternalLink, Star, GitFork, Calendar, Code2, Zap, Loader2 } from 'lucide-react';
+import { projectsAPI } from '../services/api';
 
 const ProjectCard = ({ project, index }) => {
   const [isVisible, setIsVisible] = useState(false);

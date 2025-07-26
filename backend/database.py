@@ -164,15 +164,16 @@ class Database:
             if not videos:
                 return 0
                 
+            from pymongo import UpdateOne
             operations = []
             for video in videos:
-                operations.append({
-                    'updateOne': {
-                        'filter': {'youtube_id': video['youtube_id']},
-                        'update': {'$set': video},
-                        'upsert': True
-                    }
-                })
+                operations.append(
+                    UpdateOne(
+                        {'youtube_id': video['youtube_id']},
+                        {'$set': video},
+                        upsert=True
+                    )
+                )
             
             if operations:
                 result = await self.database.videos.bulk_write(operations)

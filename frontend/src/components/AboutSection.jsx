@@ -189,7 +189,7 @@ const AboutSection = () => {
                   Specialties
                 </h4>
                 <div className="space-y-3">
-                  {mockPersonalInfo.specialties.map((skill, index) => {
+                  {profileData.specialties.map((skill, index) => {
                     const IconComponent = getSkillIcon(skill);
                     return (
                       <div 

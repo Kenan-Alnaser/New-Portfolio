@@ -215,15 +215,36 @@ const ProjectsSection = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-          {mockGitHubProjects.map((project, index) => (
-            <ProjectCard 
-              key={project.id} 
-              project={project} 
-              index={index}
-            />
-          ))}
-        </div>
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <Loader2 className="w-8 h-8 text-red-500 animate-spin" />
+            <span className="ml-3 text-red-400">Loading projects from GitHub...</span>
+          </div>
+        ) : error ? (
+          <div className="text-center py-20">
+            <p className="text-red-400 text-lg">{error}</p>
+            <Button
+              onClick={() => window.location.reload()}
+              className="mt-4 bg-red-500 hover:bg-red-600 text-white"
+            >
+              Retry
+            </Button>
+          </div>
+        ) : projects.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-gray-400 text-lg">No projects found</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <ProjectCard 
+                key={project.id} 
+                project={project} 
+                index={index}
+              />
+            ))}
+          </div>
+        )}
 
         {/* View More Button */}
         <div className="text-center mt-12">

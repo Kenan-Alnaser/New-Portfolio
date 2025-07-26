@@ -84,12 +84,20 @@ const HeroSection = () => {
         {/* Name with Glitch Effect */}
         <h1 className="text-6xl md:text-8xl font-bold mb-6 relative">
           <span 
-            className="cyber-text bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent filter drop-shadow-[0_0_30px_rgba(239,68,68,0.5)]"
-            style={{ fontFamily: 'Orbitron, monospace' }}
+            className="cyber-text-outline text-transparent filter drop-shadow-[0_0_30px_rgba(239,68,68,0.5)]"
+            style={{ 
+              fontFamily: 'Orbitron, monospace',
+              WebkitTextStroke: '2px #ef4444',
+              textStroke: '2px #ef4444'
+            }}
           >
             {glitchText}
           </span>
-          <div className="absolute inset-0 bg-gradient-to-r from-red-400 via-red-500 to-red-600 bg-clip-text text-transparent opacity-50 transform translate-x-1 translate-y-1 -z-10">
+          <div className="absolute inset-0 text-transparent opacity-30 transform translate-x-1 translate-y-1 -z-10"
+               style={{ 
+                 WebkitTextStroke: '2px #dc2626',
+                 textStroke: '2px #dc2626'
+               }}>
             {glitchText}
           </div>
         </h1>

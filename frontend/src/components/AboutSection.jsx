@@ -67,6 +67,27 @@ const AboutSection = () => {
     return icons[tool] || Code;
   };
 
+  if (loading) {
+    return (
+      <section id="about" className="py-20 px-6 bg-gradient-to-b from-black via-gray-900/10 to-black relative overflow-hidden">
+        <div className="flex justify-center items-center py-20">
+          <Loader2 className="w-8 h-8 text-red-500 animate-spin" />
+          <span className="ml-3 text-red-400">Loading profile...</span>
+        </div>
+      </section>
+    );
+  }
+
+  if (!profileData) {
+    return (
+      <section id="about" className="py-20 px-6 bg-gradient-to-b from-black via-gray-900/10 to-black relative overflow-hidden">
+        <div className="text-center py-20">
+          <p className="text-red-400">Failed to load profile data</p>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="about" className="py-20 px-6 bg-gradient-to-b from-black via-gray-900/10 to-black relative overflow-hidden">
       {/* Background Matrix Effect */}

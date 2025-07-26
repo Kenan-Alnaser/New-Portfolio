@@ -95,89 +95,96 @@ const SocialSection = () => {
         </div>
 
         {/* Social Links Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
-          {mockSocialLinks.map((social, index) => {
-            const IconComponent = getIcon(social.icon);
-            const stats = getSocialStats(social.name);
-            const colorClass = getPlatformColor(social.name);
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <Loader2 className="w-8 h-8 text-red-500 animate-spin" />
+            <span className="ml-3 text-red-400">Loading social links...</span>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            {socialLinks.map((social, index) => {
+              const IconComponent = getIcon(social.icon);
+              const stats = getSocialStats(social.name);
+              const colorClass = getPlatformColor(social.name);
 
-            return (
-              <Card
-                key={social.name}
-                className={`cyber-social-card bg-black/40 border-red-900/30 hover:border-red-500/50 transition-all duration-500 group cursor-pointer ${
-                  hoveredIndex === index ? 'scale-105' : ''
-                }`}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-                onClick={() => window.open(social.url, '_blank')}
-              >
-                <CardContent className="p-6">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
-                      <div className={`w-12 h-12 rounded-lg bg-red-900/20 border border-red-800/30 flex items-center justify-center group-hover:bg-red-800/30 transition-all ${colorClass}`}>
-                        <IconComponent className="w-6 h-6 text-red-400 group-hover:scale-110 transition-transform" />
+              return (
+                <Card
+                  key={social.name}
+                  className={`cyber-social-card bg-black/40 border-red-900/30 hover:border-red-500/50 transition-all duration-500 group cursor-pointer ${
+                    hoveredIndex === index ? 'scale-105' : ''
+                  }`}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
+                  onClick={() => window.open(social.url, '_blank')}
+                >
+                  <CardContent className="p-6">
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-4">
+                        <div className={`w-12 h-12 rounded-lg bg-red-900/20 border border-red-800/30 flex items-center justify-center group-hover:bg-red-800/30 transition-all ${colorClass}`}>
+                          <IconComponent className="w-6 h-6 text-red-400 group-hover:scale-110 transition-transform" />
+                        </div>
+                        <div>
+                          <h3 className="text-xl font-semibold text-red-300 group-hover:text-red-200 transition-colors">
+                            {social.name}
+                          </h3>
+                          <p className="text-gray-400 text-sm">
+                            {social.name === 'GitHub' && 'Code Repository'}
+                            {social.name === 'LinkedIn' && 'Professional Network'}
+                            {social.name === 'YouTube' && 'Tech Content'}
+                            {social.name === 'Twitch' && 'Live Coding'}
+                          </p>
+                        </div>
                       </div>
-                      <div>
-                        <h3 className="text-xl font-semibold text-red-300 group-hover:text-red-200 transition-colors">
-                          {social.name}
-                        </h3>
-                        <p className="text-gray-400 text-sm">
-                          {social.name === 'GitHub' && 'Code Repository'}
-                          {social.name === 'LinkedIn' && 'Professional Network'}
-                          {social.name === 'YouTube' && 'Tech Content'}
-                          {social.name === 'Twitch' && 'Live Coding'}
-                        </p>
+
+                      <div className="text-right">
+                        <div className="text-2xl font-bold text-red-400 group-hover:text-red-300 transition-colors">
+                          {stats.followers}
+                        </div>
+                        <div className="text-gray-500 text-sm">{stats.label}</div>
                       </div>
                     </div>
 
-                    <div className="text-right">
-                      <div className="text-2xl font-bold text-red-400 group-hover:text-red-300 transition-colors">
-                        {stats.followers}
+                    {/* Platform-specific details */}
+                    <div className="mt-4 pt-4 border-t border-red-900/20">
+                      <div className="flex items-center justify-between text-sm">
+                        <div className="flex items-center gap-2 text-gray-400">
+                          {social.name === 'GitHub' && (
+                            <>
+                              <Radio className="w-4 h-4" />
+                              <span>50+ Repositories</span>
+                            </>
+                          )}
+                          {social.name === 'LinkedIn' && (
+                            <>
+                              <Users className="w-4 h-4" />
+                              <span>Tech Professional</span>
+                            </>
+                          )}
+                          {social.name === 'YouTube' && (
+                            <>
+                              <Radio className="w-4 h-4 text-red-500" />
+                              <span>Weekly Uploads</span>
+                            </>
+                          )}
+                          {social.name === 'Twitch' && (
+                            <>
+                              <Radio className="w-4 h-4 text-purple-500" />
+                              <span>Live Sessions</span>
+                            </>
+                          )}
+                        </div>
+                        <ExternalLink className="w-4 h-4 text-red-500 group-hover:text-red-400 transition-colors" />
                       </div>
-                      <div className="text-gray-500 text-sm">{stats.label}</div>
                     </div>
-                  </div>
 
-                  {/* Platform-specific details */}
-                  <div className="mt-4 pt-4 border-t border-red-900/20">
-                    <div className="flex items-center justify-between text-sm">
-                      <div className="flex items-center gap-2 text-gray-400">
-                        {social.name === 'GitHub' && (
-                          <>
-                            <Radio className="w-4 h-4" />
-                            <span>50+ Repositories</span>
-                          </>
-                        )}
-                        {social.name === 'LinkedIn' && (
-                          <>
-                            <Users className="w-4 h-4" />
-                            <span>Tech Professional</span>
-                          </>
-                        )}
-                        {social.name === 'YouTube' && (
-                          <>
-                            <Radio className="w-4 h-4 text-red-500" />
-                            <span>Weekly Uploads</span>
-                          </>
-                        )}
-                        {social.name === 'Twitch' && (
-                          <>
-                            <Radio className="w-4 h-4 text-purple-500" />
-                            <span>Live Sessions</span>
-                          </>
-                        )}
-                      </div>
-                      <ExternalLink className="w-4 h-4 text-red-500 group-hover:text-red-400 transition-colors" />
-                    </div>
-                  </div>
-
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-red-900/5 via-transparent to-red-900/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-lg"></div>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
+                    {/* Hover overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-red-900/5 via-transparent to-red-900/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-lg"></div>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        )}
 
         {/* Call-to-Action */}
         <div className="text-center">

@@ -189,7 +189,7 @@ const HeroSection = () => {
           50% { transform: translateX(0); opacity: 1; }
         }
 
-        .cyber-text {
+        .cyber-text-outline {
           text-shadow: 
             0 0 10px rgba(239, 68, 68, 0.5),
             0 0 20px rgba(239, 68, 68, 0.3),

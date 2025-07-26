@@ -142,11 +142,11 @@ const AboutSection = () => {
                       <Brain className="w-10 h-10 text-red-400 group-hover:text-red-300 transition-colors" />
                     </div>
                     <div>
-                      <h3 className="text-2xl font-bold text-red-300 mb-2">{mockPersonalInfo.name}</h3>
-                      <p className="text-red-400 font-medium">{mockPersonalInfo.title}</p>
+                      <h3 className="text-2xl font-bold text-red-300 mb-2">{profileData.name}</h3>
+                      <p className="text-red-400 font-medium">{profileData.title}</p>
                       <div className="flex items-center gap-2 mt-2 text-gray-400">
                         <MapPin className="w-4 h-4" />
-                        <span>{mockPersonalInfo.location}</span>
+                        <span>{profileData.location}</span>
                       </div>
                     </div>
                   </div>

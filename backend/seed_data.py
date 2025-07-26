@@ -90,8 +90,6 @@ async def seed_initial_data():
     except Exception as e:
         logger.error(f"❌ Error seeding database: {str(e)}")
         raise
-    finally:
-        await database.close_mongo_connection()
 
 if __name__ == "__main__":
     asyncio.run(seed_initial_data())

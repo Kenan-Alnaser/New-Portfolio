@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
-import { Play, Eye, Clock, ExternalLink, Youtube, Monitor } from 'lucide-react';
-import { mockVideos } from '../mock';
+import { Play, Eye, Clock, ExternalLink, Youtube, Monitor, Loader2 } from 'lucide-react';
+import { videosAPI } from '../services/api';
 
 const VideoCard = ({ video, index, onPlay }) => {
   const [imageLoaded, setImageLoaded] = useState(false);

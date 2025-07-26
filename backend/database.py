@@ -82,15 +82,16 @@ class Database:
             if not projects:
                 return 0
                 
+            from pymongo import UpdateOne
             operations = []
             for project in projects:
-                operations.append({
-                    'updateOne': {
-                        'filter': {'github_id': project['github_id']},
-                        'update': {'$set': project},
-                        'upsert': True
-                    }
-                })
+                operations.append(
+                    UpdateOne(
+                        {'github_id': project['github_id']},
+                        {'$set': project},
+                        upsert=True
+                    )
+                )
             
             if operations:
                 result = await self.database.projects.bulk_write(operations)

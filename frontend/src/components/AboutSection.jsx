@@ -7,6 +7,23 @@ import { profileAPI } from '../services/api';
 const AboutSection = () => {
   const [visibleItems, setVisibleItems] = useState([]);
   const [activeSkill, setActiveSkill] = useState(null);
+  const [profileData, setProfileData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      try {
+        const data = await profileAPI.getProfile();
+        setProfileData(data);
+      } catch (error) {
+        console.error('Failed to load profile:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(

@@ -154,7 +154,7 @@ const AboutSection = () => {
                   {/* Bio */}
                   <div className="border-l-2 border-red-500/30 pl-6">
                     <p className="text-gray-300 text-lg leading-relaxed">
-                      {mockPersonalInfo.bio}
+                      {profileData.bio}
                     </p>
                   </div>
 

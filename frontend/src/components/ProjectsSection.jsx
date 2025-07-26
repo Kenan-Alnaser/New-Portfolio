@@ -132,6 +132,27 @@ const ProjectCard = ({ project, index }) => {
 
 const ProjectsSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        setLoading(true);
+        const projectData = await projectsAPI.getProjects();
+        setProjects(projectData);
+        setError(null);
+      } catch (err) {
+        console.error('Failed to fetch projects:', err);
+        setError('Failed to load projects');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
 
   return (
     <section id="projects" className="py-20 px-6 bg-gradient-to-b from-black via-gray-900/20 to-black relative overflow-hidden">

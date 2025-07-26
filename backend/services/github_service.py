@@ -67,6 +67,7 @@ class GitHubService:
                 continue
                 
             processed_repo = {
+                'id': str(uuid.uuid4()),  # Generate UUID for the project
                 'github_id': repo['id'],
                 'name': repo['name'],
                 'description': repo.get('description') or f"A {repo.get('language', 'code')} project",

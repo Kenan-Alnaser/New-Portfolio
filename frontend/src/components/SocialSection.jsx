@@ -6,6 +6,23 @@ import { socialAPI } from '../services/api';
 
 const SocialSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [socialLinks, setSocialLinks] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchSocialLinks = async () => {
+      try {
+        const data = await socialAPI.getSocialLinks();
+        setSocialLinks(data);
+      } catch (error) {
+        console.error('Failed to load social links:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchSocialLinks();
+  }, []);
 
   const getIcon = (iconName) => {
     const icons = {

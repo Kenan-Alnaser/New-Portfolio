@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from './ui/card';
 import { Badge } from './ui/badge';
-import { MapPin, Zap, Brain, Code, Cpu, Database, GitBranch } from 'lucide-react';
-import { mockPersonalInfo } from '../mock';
+import { MapPin, Zap, Brain, Code, Cpu, Database, GitBranch, Loader2 } from 'lucide-react';
+import { profileAPI } from '../services/api';
 
 const AboutSection = () => {
   const [visibleItems, setVisibleItems] = useState([]);

@@ -9,8 +9,7 @@ logger = logging.getLogger(__name__)
 async def seed_initial_data():
     """Seed the database with initial data"""
     try:
-        await database.connect_to_mongo()
-        
+        # Database should already be connected by the lifespan manager
         # Check if profile already exists
         existing_profile = await database.get_profile()
         if not existing_profile:

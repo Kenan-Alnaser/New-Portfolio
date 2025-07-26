@@ -93,6 +93,23 @@ const VideoCard = ({ video, index, onPlay }) => {
 
 const VideosSection = () => {
   const [selectedVideo, setSelectedVideo] = useState(null);
+  const [videos, setVideos] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchVideos = async () => {
+      try {
+        const data = await videosAPI.getVideos();
+        setVideos(data);
+      } catch (error) {
+        console.error('Failed to load videos:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchVideos();
+  }, []);
 
   const handlePlayVideo = (video) => {
     setSelectedVideo(video);

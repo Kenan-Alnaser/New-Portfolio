@@ -161,16 +161,23 @@ const VideosSection = () => {
         </div>
 
         {/* Videos Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-12">
-          {mockVideos.map((video, index) => (
-            <VideoCard
-              key={video.id}
-              video={video}
-              index={index}
-              onPlay={handlePlayVideo}
-            />
-          ))}
-        </div>
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <Loader2 className="w-8 h-8 text-red-500 animate-spin" />
+            <span className="ml-3 text-red-400">Loading videos...</span>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-12">
+            {videos.map((video, index) => (
+              <VideoCard
+                key={video.id}
+                video={video}
+                index={index}
+                onPlay={handlePlayVideo}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Channel CTA */}
         <div className="text-center">

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardContent } from './ui/card';
 import { Button } from './ui/button';
-import { Github, Linkedin, Youtube, Twitch, ExternalLink, Users, Radio } from 'lucide-react';
-import { mockSocialLinks } from '../mock';
+import { Github, Linkedin, Youtube, Twitch, ExternalLink, Users, Radio, Loader2 } from 'lucide-react';
+import { socialAPI } from '../services/api';
 
 const SocialSection = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
